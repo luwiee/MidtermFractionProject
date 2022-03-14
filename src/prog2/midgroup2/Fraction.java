@@ -6,8 +6,9 @@ package prog2.midgroup2;
  *
  * @author Lawrence T. Miguel II
  */
-
+import java.util.Scanner;
 public class Fraction {
+    static Scanner read = new Scanner(System.in);
     // Class data-fields
     /**
      * Stores the numerator of the Fraction object
@@ -27,9 +28,14 @@ public class Fraction {
      **/
 
     public Fraction() {
+
         numerator = 0;
         denominator = 1;
     }
+//    public void message(){
+//        System.out.println("Input the numerator");
+//
+//    }
 
     /**
      * Overload Constructor for the Fraction object with a whole number as a parameter <br>
@@ -69,7 +75,8 @@ public class Fraction {
      * @return the value of the numerator of this fraction
      */
     public int getNumerator() {
-        return numerator;
+
+        return this.numerator;
     }
 
     /**
@@ -78,6 +85,7 @@ public class Fraction {
      * @param numerator sets the value of the numerator of this fraction to numerator
      */
     public void setNumerator(int numerator) {
+
         this.numerator = numerator;
     }
 
@@ -117,6 +125,7 @@ public class Fraction {
         return (double) numerator / denominator;
     }
 
+//    Rhyen's mental health is unstable but he will still do the code anyways
     /**
      * Computes for the sum of two Fractions. <br><br>
      * <p>
@@ -124,23 +133,30 @@ public class Fraction {
      * 1.
      * 2.
      *
-     * @param other another Fraction object
+//     * @param other another Fraction object
      * @return the sum of two Fractions
      */
-    public Fraction add(Fraction other) {
-        Fraction sum = new Fraction();
-        int denominator, numerator = 0;
-        if (this.denominator == other.getDenominator()) { // if the denominators are equal
-            denominator = this.denominator;
-            numerator = numerator + other.getNumerator();
-        } else { // if the denominators are not equal
-            denominator = computeLCM(this.denominator, other.getDenominator());
-            numerator = denominator / this.denominator * numerator + denominator / other.getDenominator() * other.getNumerator();
-        }
-        sum.setNumerator(numerator);
-        sum.setDenominator(denominator);
-        sum.simplify();
-        return sum;
+//    public Fraction add(Fraction other) {
+//        Fraction sum = new Fraction();
+//        int denominator, numerator = 0;
+//        if (this.denominator == other.getDenominator()) { // if the denominators are equal
+//            denominator = this.denominator;
+//            numerator = numerator + other.getNumerator();
+//        } else { // if the denominators are not equal
+//            denominator = computeLCM(this.denominator, other.getDenominator());
+//            numerator = denominator / this.denominator * numerator + denominator / other.getDenominator() * other.getNumerator();
+//        }
+//        sum.setNumerator(numerator);
+//        sum.setDenominator(denominator);
+//        sum.simplify();
+//        return sum;
+//    }
+    public Fraction add(Fraction fractionTwo) {
+
+        int numer = (numerator * fractionTwo.getDenominator()) +
+                (fractionTwo.getNumerator() * denominator);
+        int denr = denominator * fractionTwo.getDenominator();
+        return new Fraction(numer, denr);
     }
 
     /**
@@ -285,6 +301,180 @@ public class Fraction {
         }
 
         return lcm;
+    }
+    public final void contant() {
+        Fraction display = new Fraction();
+        Fraction display2 = new Fraction(1, 2);
+        System.out.println("\n\n");
+        System.out.println("Enter numerator and denominator respectively");
+        final int taas = Integer.parseInt(read.nextLine());
+        final int baba = Integer.parseInt(read.nextLine());
+        Fraction f1 = new Fraction(taas, baba);
+        System.out.println(f1.toString());
+        System.out.println("Enter numerator and denominator respectively for the second inputs");
+       final int taas2 = Integer.parseInt(read.nextLine());
+       final int baba2 = Integer.parseInt(read.nextLine());
+        Fraction f2 = new Fraction(taas2, baba2);
+        Fraction f3 = f1.add(f2);
+    }
+    public String toMixed(int numerator, int denominator){
+        String mixedNum;
+        int wholeNum;
+        wholeNum = Math.floorDiv(numerator,denominator);
+        mixedNum = wholeNum + " " + (numerator - wholeNum*denominator) + "/" + denominator;
+        return mixedNum;
+    }
+    public void addition(){
+        System.out.println("Enter fraction or Mixed depending on your preference: ");
+        String preference = read.nextLine();
+        System.out.print("You have entered: "+preference);
+        if(preference.equalsIgnoreCase("fraction")) {
+            System.out.println("\n\n");
+            System.out.println("Enter numerator and denominator respectively");
+             int taas =  Integer.parseInt(read.nextLine());
+             int baba = Integer.parseInt(read.nextLine());
+            Fraction f1 = new Fraction(taas, baba);
+            System.out.println(f1.toString());
+            System.out.println("Enter numerator and denominator respectively for the second inputs");
+             int taas2 = Integer.parseInt(read.nextLine());
+             int baba2 = Integer.parseInt(read.nextLine());
+            Fraction f2 = new Fraction(taas2, baba2);
+              Fraction f3 = f1.add(f2);
+              System.out.println("result " +f3);
+
+        }
+        else{
+            MixedFraction call = new MixedFraction();
+            System.out.println("\n\n");
+            System.out.println("Enter numerator and denominator respectively");
+            int taas =  Integer.parseInt(read.nextLine());
+            int baba = Integer.parseInt(read.nextLine());
+            call.toFraction();
+            Fraction f1 = new Fraction(taas, baba);
+            System.out.println(f1.toString());
+            System.out.println("Enter numerator and denominator respectively for the second inputs");
+            int taas2 = Integer.parseInt(read.nextLine());
+            int baba2 = Integer.parseInt(read.nextLine());
+//            call.toFraction();
+            Fraction f2 = new Fraction(taas2, baba2);
+            Fraction f3 = call.add(f1);
+            System.out.println("result " + f3);
+
+        }
+    }
+    public void subtraction(){
+        System.out.println("Enter fraction or Mixed depending on your preference: ");
+        String preference = read.nextLine();
+        System.out.print("You have entered: "+preference);
+        if(preference.equalsIgnoreCase("fraction")) {
+            System.out.println("\n\n");
+            System.out.println("Enter numerator and denominator respectively");
+            int taas =  Integer.parseInt(read.nextLine());
+            int baba = Integer.parseInt(read.nextLine());
+            Fraction f1 = new Fraction(taas, baba);
+            System.out.println(f1.toString());
+            System.out.println("Enter numerator and denominator respectively for the second inputs");
+            int taas2 = Integer.parseInt(read.nextLine());
+            int baba2 = Integer.parseInt(read.nextLine());
+            Fraction f2 = new Fraction(taas2, baba2);
+            Fraction f3 = f1.subtract(f2);
+            System.out.println("result " +f3);
+
+        }
+        else{
+            MixedFraction call = new MixedFraction();
+            System.out.println("\n\n");
+            System.out.println("Enter numerator and denominator respectively");
+            int taas =  Integer.parseInt(read.nextLine());
+            int baba = Integer.parseInt(read.nextLine());
+            call.toFraction();
+            Fraction f1 = new Fraction(taas, baba);
+            System.out.println(f1.toString());
+            System.out.println("Enter numerator and denominator respectively for the second inputs");
+            int taas2 = Integer.parseInt(read.nextLine());
+            int baba2 = Integer.parseInt(read.nextLine());
+//            call.toFraction();
+            Fraction f2 = new Fraction(taas2, baba2);
+            Fraction f3 = call.subtract(f1);
+            System.out.println("result " + f3);
+
+        }
+    }
+    public void multiplication(){
+        System.out.println("Enter fraction or Mixed depending on your preference: ");
+        String preference = read.nextLine();
+        System.out.print("You have entered: "+preference);
+        if(preference.equalsIgnoreCase("fraction")) {
+            System.out.println("\n\n");
+            System.out.println("Enter numerator and denominator respectively");
+            int taas =  Integer.parseInt(read.nextLine());
+            int baba = Integer.parseInt(read.nextLine());
+            Fraction f1 = new Fraction(taas, baba);
+            System.out.println(f1.toString());
+            System.out.println("Enter numerator and denominator respectively for the second inputs");
+            int taas2 = Integer.parseInt(read.nextLine());
+            int baba2 = Integer.parseInt(read.nextLine());
+            Fraction f2 = new Fraction(taas2, baba2);
+            Fraction f3 = f1.multiplyBy(f2);
+            System.out.println("result " +f3);
+
+        }
+        else{
+            MixedFraction call = new MixedFraction();
+            System.out.println("\n\n");
+            System.out.println("Enter numerator and denominator respectively");
+            int taas =  Integer.parseInt(read.nextLine());
+            int baba = Integer.parseInt(read.nextLine());
+            call.toFraction();
+            Fraction f1 = new Fraction(taas, baba);
+            System.out.println(f1.toString());
+            System.out.println("Enter numerator and denominator respectively for the second inputs");
+            int taas2 = Integer.parseInt(read.nextLine());
+            int baba2 = Integer.parseInt(read.nextLine());
+//            call.toFraction();
+            Fraction f2 = new Fraction(taas2, baba2);
+            Fraction f3 = call.multiplyBy(f1);
+            System.out.println("result" + f3);
+
+        }
+    }
+    public void division(){
+        System.out.println("Enter fraction or Mixed depending on your preference: ");
+        String preference = read.nextLine();
+        System.out.print("You have entered: "+preference);
+        if(preference.equalsIgnoreCase("fraction")) {
+            System.out.println("\n\n");
+            System.out.println("Enter numerator and denominator respectively");
+            int taas =  Integer.parseInt(read.nextLine());
+            int baba = Integer.parseInt(read.nextLine());
+            Fraction f1 = new Fraction(taas, baba);
+            System.out.println(f1.toString());
+            System.out.println("Enter numerator and denominator respectively for the second inputs");
+            int taas2 = Integer.parseInt(read.nextLine());
+            int baba2 = Integer.parseInt(read.nextLine());
+            Fraction f2 = new Fraction(taas2, baba2);
+            Fraction f3 = f1.divideBy(f2);
+            System.out.println("result" +f3);
+
+        }
+        else{
+            MixedFraction call = new MixedFraction();
+            System.out.println("\n\n");
+            System.out.println("Enter numerator and denominator respectively");
+            int taas =  Integer.parseInt(read.nextLine());
+            int baba = Integer.parseInt(read.nextLine());
+            call.toFraction();
+            Fraction f1 = new Fraction(taas, baba);
+            System.out.println(f1.toString());
+            System.out.println("Enter numerator and denominator respectively for the second inputs");
+            int taas2 = Integer.parseInt(read.nextLine());
+            int baba2 = Integer.parseInt(read.nextLine());
+//            call.toFraction();
+            Fraction f2 = new Fraction(taas2, baba2);
+            Fraction f3 = call.divideBy(f1);
+            System.out.println("result" + f3);
+
+        }
     }
 } //end of Fraction class
 
