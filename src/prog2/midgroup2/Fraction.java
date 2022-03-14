@@ -327,7 +327,7 @@ public class Fraction {
     public void addition(){
         System.out.println("Enter fraction or Mixed depending on your preference: ");
         String preference = read.nextLine();
-        System.out.print("You have entered: "+preference);
+        System.out.println("You have entered: "+preference);
         if(preference.equalsIgnoreCase("fraction")) {
             System.out.println("\n\n");
             System.out.println("Enter numerator and denominator respectively");
@@ -343,7 +343,7 @@ public class Fraction {
               System.out.println("result " +f3);
 
         }
-        else{
+        else if(preference.equalsIgnoreCase("mixed")){
             MixedFraction call = new MixedFraction();
             System.out.println("\n\n");
             System.out.println("Enter numerator and denominator respectively");
@@ -359,13 +359,16 @@ public class Fraction {
             Fraction f2 = new Fraction(taas2, baba2);
             Fraction f3 = call.add(f1);
             System.out.println("result " + f3);
-
+        }
+        else{
+            System.out.println("Invalid! pls input again!");
+            addition();
         }
     }
     public void subtraction(){
         System.out.println("Enter fraction or Mixed depending on your preference: ");
         String preference = read.nextLine();
-        System.out.print("You have entered: "+preference);
+        System.out.println("You have entered: "+preference);
         if(preference.equalsIgnoreCase("fraction")) {
             System.out.println("\n\n");
             System.out.println("Enter numerator and denominator respectively");
@@ -381,7 +384,7 @@ public class Fraction {
             System.out.println("result " +f3);
 
         }
-        else{
+        else if(preference.equalsIgnoreCase("mixed")){
             MixedFraction call = new MixedFraction();
             System.out.println("\n\n");
             System.out.println("Enter numerator and denominator respectively");
@@ -397,13 +400,16 @@ public class Fraction {
             Fraction f2 = new Fraction(taas2, baba2);
             Fraction f3 = call.subtract(f1);
             System.out.println("result " + f3);
-
+        }
+        else{
+            System.out.println("Invalid! Pls input again!");
+            subtraction();
         }
     }
     public void multiplication(){
         System.out.println("Enter fraction or Mixed depending on your preference: ");
         String preference = read.nextLine();
-        System.out.print("You have entered: "+preference);
+        System.out.println("You have entered: "+preference);
         if(preference.equalsIgnoreCase("fraction")) {
             System.out.println("\n\n");
             System.out.println("Enter numerator and denominator respectively");
@@ -419,7 +425,7 @@ public class Fraction {
             System.out.println("result " +f3);
 
         }
-        else{
+        else if(preference.equalsIgnoreCase("mixed")){
             MixedFraction call = new MixedFraction();
             System.out.println("\n\n");
             System.out.println("Enter numerator and denominator respectively");
@@ -435,7 +441,10 @@ public class Fraction {
             Fraction f2 = new Fraction(taas2, baba2);
             Fraction f3 = call.multiplyBy(f1);
             System.out.println("result" + f3);
-
+        }
+        else{
+            System.out.println(" Invalid, input again!");
+            multiplication();
         }
     }
     public void division(){
@@ -447,17 +456,33 @@ public class Fraction {
             System.out.println("Enter numerator and denominator respectively");
             int taas =  Integer.parseInt(read.nextLine());
             int baba = Integer.parseInt(read.nextLine());
+            if(taas == 0 && baba ==0){
+                System.out.println("0/0 is indeterminate! input again!");
+                division();
+            }
+            else if (baba == 0){
+                System.out.println("You cannot divide a number by zero");
+                division();
+            }
             Fraction f1 = new Fraction(taas, baba);
             System.out.println(f1.toString());
             System.out.println("Enter numerator and denominator respectively for the second inputs");
             int taas2 = Integer.parseInt(read.nextLine());
             int baba2 = Integer.parseInt(read.nextLine());
+            if(taas2 == 0 && baba2 ==0){
+                System.out.println("0/0 is indeterminate! input again!");
+                division();
+            }
+            else if (baba2 == 0){
+                System.out.println("You cannot divide a number by zero");
+                division();
+            }
             Fraction f2 = new Fraction(taas2, baba2);
             Fraction f3 = f1.divideBy(f2);
             System.out.println("result" +f3);
 
         }
-        else{
+        else if(preference.equalsIgnoreCase("mixed")){
             MixedFraction call = new MixedFraction();
             System.out.println("\n\n");
             System.out.println("Enter numerator and denominator respectively");
@@ -473,7 +498,10 @@ public class Fraction {
             Fraction f2 = new Fraction(taas2, baba2);
             Fraction f3 = call.divideBy(f1);
             System.out.println("result" + f3);
-
+        }
+        else{
+            System.out.println("Invalid! pls input again");
+            division();
         }
     }
 } //end of Fraction class

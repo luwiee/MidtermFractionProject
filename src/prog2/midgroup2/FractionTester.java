@@ -100,49 +100,5 @@ public class FractionTester extends Fraction{
                 System.err.println("Invalid choice! Please make a valid choice.");
         }
     }
-
-
-
-
-
-
-
-//    public static void main(String[] args) {
-//        Scanner in = new Scanner(System.in);
-//        // Display the menu
-//        System.out.println("1\t Inputs");
-//        System.out.println("2\t ADD");
-//        System.out.println("3\t SUBTRACT");
-//        System.out.println("4\t MULTIPLY");
-//
-//        System.out.println("Please enter your choice:");
-//
-//        //Get user's choice
-//        int choice=in.nextInt();
-//        //Create object
-//        Fraction display = new Fraction();
-//        //Display the title of the chosen module
-//        switch (choice) {
-//            case 1:
-//                System.out.println("Enter the numerator:");
-//                int num = in.nextInt();
-//                display.setNumerator(num);
-//                System.out.println("The numerator is " +display.getNumerator());
-//                System.out.println("Enter the denominator:");
-//                int denom = in.nextInt();
-//                display.setDenominator(denom);
-//                System.out.println("The Denominator is " +display.getDenominator());
-//                break;
-//            case 2: System.out.println("ADD");
-//                    System.out.println(display.getNumerator() + display.getDenominator());
-//                break;
-//            case 3: System.out.println("SUBTRACT");
-//                break;
-//            case 4: System.out.println("MULTIPLY");
-//                break;
-//            case 5: System.out.println("DIVIDE");
-//                break;
-//            default: System.out.println("Invalid choice");
-//        }//end of switch
-//    }
+    
 }
