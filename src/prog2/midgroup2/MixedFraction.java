@@ -20,12 +20,11 @@ public class MixedFraction extends Fraction {
     /**
      * Overload Constructor for
      *
-     * @param whole_number
-     * @param fraction
+     * @param whole_number whole number
+     * @param fraction fraction
      */
-    public MixedFraction(int whole_number, Fraction fraction) {
-        setNumerator(fraction.getNumerator());
-        setDenominator(fraction.getDenominator());
+    public MixedFraction(int whole_number, Fraction fraction) throws Exception {
+        super(fraction.getNumerator(), fraction.getDenominator());
         this.whole_number = whole_number;
     }
 
@@ -33,14 +32,13 @@ public class MixedFraction extends Fraction {
      * Overload Constructor for explicitly setting the whole number
      * Numerator and denominator of a MixedFraction object
      *
-     * @param whole_number
-     * @param numerator
-     * @param denominator
+     * @param whole_number whole number
+     * @param numerator numerator
+     * @param denominator denominator
      */
-    public MixedFraction(int whole_number, int numerator, int denominator) {
+    public MixedFraction(int whole_number, int numerator, int denominator) throws Exception {
+        super(numerator, denominator);
         this.whole_number = whole_number;
-        super.setNumerator(numerator);
-        super.setDenominator(denominator);
     }
 
     /**
@@ -48,32 +46,30 @@ public class MixedFraction extends Fraction {
      * Sets the numerator of a Mixed Fraction to a given numerator of a Fraction <br>
      * Sets the denominator of a Mixed Fraction to a given denominator of a Fraction <br>
      *
-     * @param fraction
+     * @param fraction fraction
      */
     public MixedFraction(Fraction fraction) {
-        fraction.setNumerator(fraction.getNumerator());
-        fraction.setDenominator(fraction.getDenominator());
+        setNumerator(fraction.getNumerator());
+        setDenominator(fraction.getDenominator());
     }
 
     /**
-     * Mutuator/Setter Method. <br>
+     * Mutator/Setter Method. <br>
      *
-     * @param whole_number
+     * @param whole_number whole number
      */
     public void setWhole_number(int whole_number) {
         this.whole_number = whole_number;
     }
 
     /**
-     * Mutuator/Setter Method. <br>
+     * Mutator/Setter Method. <br>
      *
-     * @param fraction
+     * @param fraction fraction
      */
     public void setFractionPart(Fraction fraction) {
-        int denominator = fraction.getDenominator();
-        int num = fraction.getNumerator();
-        fraction.setNumerator(num);
-        fraction.setDenominator(denominator);
+        this.setNumerator(fraction.getNumerator());
+        this.setDenominator(fraction.getDenominator());
     }
 
     /**
@@ -90,11 +86,8 @@ public class MixedFraction extends Fraction {
      *
      * @return a fraction object
      */
-    public Fraction getFractionPart() {
-        Fraction fraction = new Fraction();
-        fraction.getNumerator();
-        fraction.getDenominator();
-        return fraction;
+    public Fraction getFractionPart() throws Exception {
+        return new Fraction(getNumerator(), getDenominator());
     }
 
     /**
@@ -142,7 +135,6 @@ public class MixedFraction extends Fraction {
         toMixedFraction();
         sum.setNumerator(num);
         sum.setDenominator(denominator);
-        sum.simplify();
         sum.toMixedFraction();
 
         return sum;
@@ -156,8 +148,8 @@ public class MixedFraction extends Fraction {
      * 2.
      * 3.
      *
-     * @param
-     * @return
+     * @param other mixed fraction
+     * @return total of the 2 mixed fraction
      */
     public MixedFraction add(MixedFraction other) {
         var sum = new MixedFraction();
@@ -177,7 +169,6 @@ public class MixedFraction extends Fraction {
         sum.setWhole_number(this.getWhole_number() + other.getWhole_number());
         sum.setNumerator(num);
         sum.setDenominator(denominator);
-        sum.simplify();
         sum.toMixedFraction();
 
         return sum;
@@ -204,7 +195,6 @@ public class MixedFraction extends Fraction {
         toMixedFraction();
         subtract.setNumerator(num);
         subtract.setDenominator(denominator);
-        subtract.simplify();
         subtract.toMixedFraction();
 
         return subtract;
@@ -213,7 +203,7 @@ public class MixedFraction extends Fraction {
     /**
      * Computes for the difference of two Fractions and overloads subtract method. <br>
      *
-     * @param other
+     * @param other mixed fraction
      * @return the difference of two Mixed Fractions
      */
     public MixedFraction subtract(MixedFraction other) {
@@ -232,7 +222,6 @@ public class MixedFraction extends Fraction {
         toMixedFraction();
         subtract.setNumerator(num);
         subtract.setDenominator(denominator);
-        subtract.simplify();
         subtract.toMixedFraction();
 
         return subtract;
@@ -250,13 +239,12 @@ public class MixedFraction extends Fraction {
         int denominator = getDenominator() * other.getDenominator();
         product.setNumerator(num);
         product.setDenominator(denominator);
-        product.simplify();
         return product;
     }
 
     /**
      * Computes the product of two Mixed Fractions and overloads multiplyBy method. <br>
-     * @param other
+     * @param other mixed fraction
      * @return product
      */
     public MixedFraction multiplyBy(MixedFraction other) {
@@ -277,14 +265,13 @@ public class MixedFraction extends Fraction {
         product.setWhole_number(wN);
         product.setNumerator(num);
         product.setDenominator(denominator);
-        product.simplify();
         return product;
     }
 
     /**
      * Computes for the quotient of a Mixed Fraction and other Fraction, and overrides divideBy method. <br>
 
-     * @param other
+     * @param other fraction
      * @return quotient
      */
     public MixedFraction divideBy(Fraction other) {
@@ -306,7 +293,6 @@ public class MixedFraction extends Fraction {
         quotient.setNumerator(num);
         quotient.setDenominator(denominator);
         quotient.setWhole_number(whole);
-        quotient.simplify();
 
         return quotient;
     }   // end of the divideBy method
@@ -334,7 +320,6 @@ public class MixedFraction extends Fraction {
             quotient.setDenominator(denominator);
             quotient.setWhole_number(0);
             quotient.setNumerator(num);
-            quotient.simplify();
             quotient.toMixedFraction();
         }
 
