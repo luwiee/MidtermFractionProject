@@ -156,7 +156,20 @@ public class Fraction {
         int numer = (numerator * fractionTwo.getDenominator()) +
                 (fractionTwo.getNumerator() * denominator);
         int denr = denominator * fractionTwo.getDenominator();
-        return new Fraction(numer, denr);
+//        toMixed(1,4);
+        return new Fraction(numer,denr);
+    }
+    public String addMix(Fraction fractionTwo) {
+
+        int numer = (numerator * fractionTwo.getDenominator()) +
+                (fractionTwo.getNumerator() * denominator);
+        int denr = denominator * fractionTwo.getDenominator();
+//        return new Fraction.toMixed(numer, denr);
+        String mixedNum;
+        int wholeNum;
+        wholeNum = Math.floorDiv(numer,denr);
+        mixedNum = wholeNum + " " + (numer - wholeNum*denr) + "/" + denr;
+        return mixedNum;
     }
 
     /**
@@ -317,7 +330,7 @@ public class Fraction {
         Fraction f2 = new Fraction(taas2, baba2);
         Fraction f3 = f1.add(f2);
     }
-    public String toMixed(int numerator, int denominator){
+    public static String toMixed(int numerator, int denominator){
         String mixedNum;
         int wholeNum;
         wholeNum = Math.floorDiv(numerator,denominator);
@@ -356,9 +369,13 @@ public class Fraction {
             int taas2 = Integer.parseInt(read.nextLine());
             int baba2 = Integer.parseInt(read.nextLine());
 //            call.toFraction();
-            Fraction f2 = new Fraction(taas2, baba2);
-            Fraction f3 = call.add(f1);
-            System.out.println("result " + f3);
+            int numer = (taas * baba2) + (taas2 * baba);
+            int denr = baba * baba2;
+
+//            Fraction f2 = new Fraction(taas2, baba2);
+//            Fraction f3 = f1.add(f2);
+            System.out.println("result " + toMixed(numer,denr));
+
         }
         else{
             System.out.println("Invalid! pls input again!");
@@ -397,9 +414,16 @@ public class Fraction {
             int taas2 = Integer.parseInt(read.nextLine());
             int baba2 = Integer.parseInt(read.nextLine());
 //            call.toFraction();
-            Fraction f2 = new Fraction(taas2, baba2);
-            Fraction f3 = call.subtract(f1);
-            System.out.println("result " + f3);
+//            Fraction f2 = new Fraction(taas2, baba2);
+//            Fraction f3 = call.subtract(f1);
+//            System.out.println("result " + f3);
+            if (baba == baba2) { // if the denominators are equal
+                taas = taas - taas2;
+            } else { // if the denominators are not equal
+                baba = computeLCM(baba, baba2);
+                taas = (baba / baba * taas) - (baba / baba2 * taas2);
+            }
+            System.out.println("result is " + toMixed(taas, baba));
         }
         else{
             System.out.println("Invalid! Pls input again!");
@@ -438,9 +462,12 @@ public class Fraction {
             int taas2 = Integer.parseInt(read.nextLine());
             int baba2 = Integer.parseInt(read.nextLine());
 //            call.toFraction();
-            Fraction f2 = new Fraction(taas2, baba2);
-            Fraction f3 = call.multiplyBy(f1);
-            System.out.println("result" + f3);
+//            Fraction f2 = new Fraction(taas2, baba2);
+//            Fraction f3 = call.multiplyBy(f1);
+//            System.out.println("result" + f3);
+            int numerator = taas * taas2;
+            int denominator = baba * baba2;
+            System.out.println("Result is " + toMixed(numerator, denominator));
         }
         else{
             System.out.println(" Invalid, input again!");
@@ -461,7 +488,7 @@ public class Fraction {
                 division();
             }
             else if (baba == 0){
-                System.out.println("You cannot divide a number by zero");
+                System.out.println("You cannot divide a number by zero! input again!");
                 division();
             }
             Fraction f1 = new Fraction(taas, baba);
@@ -495,14 +522,18 @@ public class Fraction {
             int taas2 = Integer.parseInt(read.nextLine());
             int baba2 = Integer.parseInt(read.nextLine());
 //            call.toFraction();
-            Fraction f2 = new Fraction(taas2, baba2);
-            Fraction f3 = call.divideBy(f1);
-            System.out.println("result" + f3);
+//            Fraction f2 = new Fraction(taas2, baba2);
+//            Fraction f3 = call.divideBy(f1);
+//            System.out.println("result" + f3);
+            int newNum = taas * baba2;
+            int newDen = baba * taas2;
+            System.out.println("Result is " + toMixed(newNum, newDen));
         }
         else{
             System.out.println("Invalid! pls input again");
             division();
         }
     }
+
 } //end of Fraction class
 
